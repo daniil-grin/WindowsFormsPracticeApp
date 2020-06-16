@@ -40,5 +40,15 @@ namespace WindowsFormsPracticeApp
         {
             Application.Exit();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void objectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Пункт меню Объект");
+        }
     }
 }
