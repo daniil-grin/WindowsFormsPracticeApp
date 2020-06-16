@@ -16,39 +16,19 @@ namespace WindowsFormsPracticeApp
         {
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Поздравляю с первым(?) проектом на C#");
-        }
-        private void changeColor(object sender, EventArgs e)
-        {
-            if (button3.BackColor == Color.Aqua)
-            {
-                button3.BackColor = Color.Lime;
-                button2.BackColor = Color.Aqua;
-            }
-            else
-            {
-                button3.BackColor = Color.Aqua;
-                button2.BackColor = Color.Lime;
-            }
-            // button2.BackColor = (button2.BackColor == Color.Aqua) ? Color.Lime : Color.Aqua;
-            // button3.BackColor = (button2.BackColor == Color.Aqua) ? Color.Lime : Color.Aqua;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void objectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void employeeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Пункт меню Объект");
+            // Создать объект FEmployee класса FormEmployee
+            FormEmployee FEmployee = new FormEmployee();
+            // Установить родительское окно для дочернего
+            FEmployee.MdiParent = this;
+            // Вывести на экран дочерее окно
+            FEmployee.Show();
         }
     }
 }

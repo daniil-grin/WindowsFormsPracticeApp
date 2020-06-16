@@ -8,3 +8,4 @@ D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPra
 D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.csproj.CoreCompileInputs.cache
 D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.exe
 D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.pdb
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.FormEmployee.resources
