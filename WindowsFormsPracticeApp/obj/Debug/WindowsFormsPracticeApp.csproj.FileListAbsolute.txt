@@ -1,0 +1,10 @@
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\bin\Debug\WindowsFormsPracticeApp.exe.config
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\bin\Debug\WindowsFormsPracticeApp.exe
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\bin\Debug\WindowsFormsPracticeApp.pdb
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.csprojAssemblyReference.cache
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.Form1.resources
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.Properties.Resources.resources
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.csproj.GenerateResource.cache
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.csproj.CoreCompileInputs.cache
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.exe
+D:\study\Практика\Учебная\WindowsFormsPracticeApp\WindowsFormsPracticeApp\obj\Debug\WindowsFormsPracticeApp.pdb
