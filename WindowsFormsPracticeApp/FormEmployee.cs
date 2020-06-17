@@ -34,7 +34,22 @@ namespace WindowsFormsPracticeApp
         }
         private void Remove()
         {
-            MessageBox.Show("метод Remove");
+            DialogResult result = MessageBox.Show(" Удалить данные  \n по сотруднику? ", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            switch (result)
+            {
+                case DialogResult.Yes:
+                {
+                    //выполнить действия по удалению данных по сотруднику 
+                    MessageBox.Show("Удаление данных");
+                    break;
+                }
+                case DialogResult.No:
+                {
+                    //отмена удаления данных по сотруднику   
+                    MessageBox.Show("Отмена удаления данных");
+                    break;
+                }
+            }
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
