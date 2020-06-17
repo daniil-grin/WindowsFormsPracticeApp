@@ -76,5 +76,55 @@ namespace WindowsFormsPracticeApp
         {
             Remove();
         }
+
+        private void toolStripButtonUndo_Click(object sender, EventArgs e)
+        {
+            Undo();
+        }
+
+        private void toolStripButtonNew_Click(object sender, EventArgs e)
+        {
+            New();
+        }
+
+        private void toolStripButtonEdit_Click(object sender, EventArgs e)
+        {
+            Edit();
+        }
+
+        private void toolStripButtonSave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void toolStripButtonRemove_Click(object sender, EventArgs e)
+        {
+            Remove();
+        }
+
+        private void toolStripMenuUndo_Click(object sender, EventArgs e)
+        {
+            Undo();
+        }
+
+        private void toolStripMenuNew_Click(object sender, EventArgs e)
+        {
+            New();
+        }
+
+        private void toolStripMenuEdit_Click(object sender, EventArgs e)
+        {
+            Edit();
+        }
+
+        private void toolStripMenuSave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void toolStripMenuRemove_Click(object sender, EventArgs e)
+        {
+            Remove();
+        }
     }
 }
