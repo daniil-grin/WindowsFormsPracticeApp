@@ -126,5 +126,55 @@ namespace WindowsFormsPracticeApp
         {
             Remove();
         }
+
+        private void actionToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "Выбор действий по сотрудникам";
+        }
+
+        private void allToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "";
+        }
+
+        private void FormEmployee_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void undoToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "Отменить редактирование данных по сотруднику";
+        }
+
+        private void createToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "Создание данных по сотруднику";
+        }
+
+        private void editToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "Редактировать данные по сотруднику";
+        }
+
+        private void saveToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "Сохранить данные по сотруднику";
+        }
+
+        private void removeToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "Удалить данные по сотруднику";
+        }
+
+        private void reportToolStripMenuItem1_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "Создать отчет по сотруднику";
+        }
+
+        private void reportToolStripMenuItem2_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabelEmployee.Text = "Создать отчет по всем сотрудникам";
+        }
     }
 }
