@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,11 +58,31 @@
             this.toolStripMenuRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripEmployee = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelEmployee = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.listBoxEmployee = new System.Windows.Forms.ListBox();
+            this.labelListEmployee = new System.Windows.Forms.Label();
+            this.comboBoxAccess = new System.Windows.Forms.ComboBox();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.comboBoxJobRole = new System.Windows.Forms.ComboBox();
+            this.textBoxNetName = new System.Windows.Forms.TextBox();
+            this.textBoxPatronymic = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxSurname = new System.Windows.Forms.TextBox();
+            this.labelNetName = new System.Windows.Forms.Label();
+            this.labelAccess = new System.Windows.Forms.Label();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.labelJobRole = new System.Windows.Forms.Label();
+            this.labelPatronymic = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelSurname = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStripEmployee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -71,7 +92,7 @@
             this.reportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(712, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Visible = false;
@@ -102,6 +123,11 @@
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             this.undoToolStripMenuItem.MouseEnter += new System.EventHandler(this.undoToolStripMenuItem_MouseEnter);
             this.undoToolStripMenuItem.MouseLeave += new System.EventHandler(this.allToolStripMenuItem_MouseLeave);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // createToolStripMenuItem
             // 
@@ -179,9 +205,10 @@
             this.toolStripButtonEdit,
             this.toolStripButtonSave,
             this.toolStripButtonRemove});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(884, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(714, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -302,10 +329,10 @@
             // 
             this.statusStripEmployee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelEmployee});
-            this.statusStripEmployee.Location = new System.Drawing.Point(0, 218);
+            this.statusStripEmployee.Location = new System.Drawing.Point(0, 449);
             this.statusStripEmployee.Name = "statusStripEmployee";
-            this.statusStripEmployee.Size = new System.Drawing.Size(884, 22);
-            this.statusStripEmployee.TabIndex = 2;
+            this.statusStripEmployee.Size = new System.Drawing.Size(714, 22);
+            this.statusStripEmployee.TabIndex = 0;
             this.statusStripEmployee.Text = "statusStrip1";
             // 
             // toolStripStatusLabelEmployee
@@ -313,24 +340,205 @@
             this.toolStripStatusLabelEmployee.Name = "toolStripStatusLabelEmployee";
             this.toolStripStatusLabelEmployee.Size = new System.Drawing.Size(0, 17);
             // 
-            // toolStripSeparator4
+            // splitContainer1
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.listBoxEmployee);
+            this.splitContainer1.Panel1.Controls.Add(this.labelListEmployee);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.comboBoxAccess);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBoxStatus);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBoxJobRole);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxNetName);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxPatronymic);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxName);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxSurname);
+            this.splitContainer1.Panel2.Controls.Add(this.labelNetName);
+            this.splitContainer1.Panel2.Controls.Add(this.labelAccess);
+            this.splitContainer1.Panel2.Controls.Add(this.labelStatus);
+            this.splitContainer1.Panel2.Controls.Add(this.labelJobRole);
+            this.splitContainer1.Panel2.Controls.Add(this.labelPatronymic);
+            this.splitContainer1.Panel2.Controls.Add(this.labelName);
+            this.splitContainer1.Panel2.Controls.Add(this.labelSurname);
+            this.splitContainer1.Size = new System.Drawing.Size(714, 424);
+            this.splitContainer1.SplitterDistance = 237;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // listBoxEmployee
+            // 
+            this.listBoxEmployee.FormattingEnabled = true;
+            this.listBoxEmployee.Location = new System.Drawing.Point(18, 44);
+            this.listBoxEmployee.Name = "listBoxEmployee";
+            this.listBoxEmployee.Size = new System.Drawing.Size(200, 368);
+            this.listBoxEmployee.TabIndex = 0;
+            // 
+            // labelListEmployee
+            // 
+            this.labelListEmployee.AccessibleRole = System.Windows.Forms.AccessibleRole.Cursor;
+            this.labelListEmployee.AutoSize = true;
+            this.labelListEmployee.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelListEmployee.Location = new System.Drawing.Point(47, 13);
+            this.labelListEmployee.Name = "labelListEmployee";
+            this.labelListEmployee.Size = new System.Drawing.Size(154, 17);
+            this.labelListEmployee.TabIndex = 1;
+            this.labelListEmployee.Text = "Список сотрудников";
+            // 
+            // comboBoxAccess
+            // 
+            this.comboBoxAccess.FormattingEnabled = true;
+            this.comboBoxAccess.Items.AddRange(new object[] {
+            "Оператор",
+            "Старший оператор",
+            "Начальник смены",
+            "Администратор",
+            "Аналитик"});
+            this.comboBoxAccess.Location = new System.Drawing.Point(203, 286);
+            this.comboBoxAccess.Name = "comboBoxAccess";
+            this.comboBoxAccess.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxAccess.TabIndex = 5;
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "Активен",
+            "Выходной, ",
+            "В отпуске",
+            "Болеет",
+            "Не работает",
+            "Помечен как удаленный"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(203, 240);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxStatus.TabIndex = 4;
+            // 
+            // comboBoxJobRole
+            // 
+            this.comboBoxJobRole.FormattingEnabled = true;
+            this.comboBoxJobRole.Location = new System.Drawing.Point(203, 186);
+            this.comboBoxJobRole.Name = "comboBoxJobRole";
+            this.comboBoxJobRole.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxJobRole.TabIndex = 3;
+            // 
+            // textBoxNetName
+            // 
+            this.textBoxNetName.Location = new System.Drawing.Point(203, 338);
+            this.textBoxNetName.Name = "textBoxNetName";
+            this.textBoxNetName.Size = new System.Drawing.Size(256, 20);
+            this.textBoxNetName.TabIndex = 6;
+            // 
+            // textBoxPatronymic
+            // 
+            this.textBoxPatronymic.Location = new System.Drawing.Point(203, 129);
+            this.textBoxPatronymic.Name = "textBoxPatronymic";
+            this.textBoxPatronymic.Size = new System.Drawing.Size(256, 20);
+            this.textBoxPatronymic.TabIndex = 2;
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(203, 86);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(256, 20);
+            this.textBoxName.TabIndex = 1;
+            // 
+            // textBoxSurname
+            // 
+            this.textBoxSurname.Location = new System.Drawing.Point(203, 46);
+            this.textBoxSurname.Name = "textBoxSurname";
+            this.textBoxSurname.Size = new System.Drawing.Size(256, 20);
+            this.textBoxSurname.TabIndex = 0;
+            // 
+            // labelNetName
+            // 
+            this.labelNetName.AutoSize = true;
+            this.labelNetName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNetName.Location = new System.Drawing.Point(40, 339);
+            this.labelNetName.Name = "labelNetName";
+            this.labelNetName.Size = new System.Drawing.Size(100, 19);
+            this.labelNetName.TabIndex = 6;
+            this.labelNetName.Text = "Сетевое имя\t";
+            // 
+            // labelAccess
+            // 
+            this.labelAccess.AutoSize = true;
+            this.labelAccess.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAccess.Location = new System.Drawing.Point(40, 284);
+            this.labelAccess.Name = "labelAccess";
+            this.labelAccess.Size = new System.Drawing.Size(132, 19);
+            this.labelAccess.TabIndex = 5;
+            this.labelAccess.Text = "Уровень доступа";
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatus.Location = new System.Drawing.Point(40, 238);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(58, 19);
+            this.labelStatus.TabIndex = 4;
+            this.labelStatus.Text = "Статус";
+            // 
+            // labelJobRole
+            // 
+            this.labelJobRole.AutoSize = true;
+            this.labelJobRole.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelJobRole.Location = new System.Drawing.Point(40, 184);
+            this.labelJobRole.Name = "labelJobRole";
+            this.labelJobRole.Size = new System.Drawing.Size(91, 19);
+            this.labelJobRole.TabIndex = 3;
+            this.labelJobRole.Text = "Должность";
+            // 
+            // labelPatronymic
+            // 
+            this.labelPatronymic.AutoSize = true;
+            this.labelPatronymic.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPatronymic.Location = new System.Drawing.Point(40, 127);
+            this.labelPatronymic.Name = "labelPatronymic";
+            this.labelPatronymic.Size = new System.Drawing.Size(78, 19);
+            this.labelPatronymic.TabIndex = 2;
+            this.labelPatronymic.Text = "Отчество";
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(40, 84);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(38, 19);
+            this.labelName.TabIndex = 1;
+            this.labelName.Text = "Имя";
+            // 
+            // labelSurname
+            // 
+            this.labelSurname.AutoSize = true;
+            this.labelSurname.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSurname.Location = new System.Drawing.Point(40, 44);
+            this.labelSurname.Name = "labelSurname";
+            this.labelSurname.Size = new System.Drawing.Size(74, 19);
+            this.labelSurname.TabIndex = 0;
+            this.labelSurname.Text = "Фамилия";
             // 
             // FormEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 240);
+            this.ClientSize = new System.Drawing.Size(714, 471);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStripEmployee);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(730, 510);
             this.Name = "FormEmployee";
             this.Text = "Данные по сотрудникам";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormEmployee_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -339,6 +547,12 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.statusStripEmployee.ResumeLayout(false);
             this.statusStripEmployee.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -374,5 +588,22 @@
         private System.Windows.Forms.StatusStrip statusStripEmployee;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelEmployee;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ListBox listBoxEmployee;
+        private System.Windows.Forms.Label labelListEmployee;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Label labelJobRole;
+        private System.Windows.Forms.Label labelPatronymic;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelSurname;
+        private System.Windows.Forms.Label labelNetName;
+        private System.Windows.Forms.Label labelAccess;
+        private System.Windows.Forms.ComboBox comboBoxAccess;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.ComboBox comboBoxJobRole;
+        private System.Windows.Forms.TextBox textBoxNetName;
+        private System.Windows.Forms.TextBox textBoxPatronymic;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxSurname;
     }
 }

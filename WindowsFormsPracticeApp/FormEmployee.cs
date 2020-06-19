@@ -16,6 +16,11 @@ namespace WindowsFormsPracticeApp
         {
             InitializeComponent();
         }
+        private void FormEmployee_Load(object sender, EventArgs e)
+        {
+            // this.WindowState = FormWindowState.Maximized;
+            DisplayForm(true);
+        }
         private void Undo()
         {
             MessageBox.Show("метод Undo");
@@ -137,11 +142,6 @@ namespace WindowsFormsPracticeApp
             toolStripStatusLabelEmployee.Text = "";
         }
 
-        private void FormEmployee_Load(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Maximized;
-        }
-
         private void undoToolStripMenuItem_MouseEnter(object sender, EventArgs e)
         {
             toolStripStatusLabelEmployee.Text = "Отменить редактирование данных по сотруднику";
@@ -175,6 +175,94 @@ namespace WindowsFormsPracticeApp
         private void reportToolStripMenuItem2_MouseEnter(object sender, EventArgs e)
         {
             toolStripStatusLabelEmployee.Text = "Создать отчет по всем сотрудникам";
+        }
+        //Задание режима просмотра или редактирования
+        public void DisplayReadOnly(bool readOnly)
+        {
+            if (readOnly)
+            {
+                this.textBoxSurname.ReadOnly = true;
+                this.textBoxName.ReadOnly = true;
+                this.textBoxPatronymic.ReadOnly = true;
+                this.textBoxNetName.ReadOnly = true;
+                this.comboBoxJobRole.Enabled = false;
+                this.comboBoxStatus.Enabled = false;
+                this.comboBoxAccess.Enabled = false;
+            }
+            else
+            {
+                this.textBoxSurname.ReadOnly = false;
+                this.textBoxName.ReadOnly = false;
+                this.textBoxPatronymic.ReadOnly = false;
+                this.textBoxNetName.ReadOnly = false;
+                this.comboBoxJobRole.Enabled = true;
+                this.comboBoxStatus.Enabled = true;
+                this.comboBoxAccess.Enabled = true;
+            }
+        }
+        public void MenuItemEnabled(bool itemEnabled)
+        {
+            if (itemEnabled)
+            {
+                this.createToolStripMenuItem.Enabled = true;
+                this.editToolStripMenuItem.Enabled = true;
+                this.removeToolStripMenuItem.Enabled = true;
+                this.undoToolStripMenuItem.Enabled = false;
+                this.saveToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                this.createToolStripMenuItem.Enabled = false;
+                this.editToolStripMenuItem.Enabled = false;
+                this.removeToolStripMenuItem.Enabled = false;
+                this.undoToolStripMenuItem.Enabled = true;
+                this.saveToolStripMenuItem.Enabled = true;
+            }
+        }
+        public void MenuItemContextEnabled(bool itemEnabled)
+        {
+            if (itemEnabled)
+            {
+                this.toolStripMenuNew.Enabled = true;
+                this.toolStripMenuEdit.Enabled = true;
+                this.toolStripMenuRemove.Enabled = true;
+                this.toolStripMenuUndo.Enabled = false;
+                this.toolStripMenuSave.Enabled = false;
+            }
+            else
+            {
+                this.toolStripMenuNew.Enabled = false;
+                this.toolStripMenuEdit.Enabled = false;
+                this.toolStripMenuRemove.Enabled = false;
+                this.toolStripMenuUndo.Enabled = true;
+                this.toolStripMenuSave.Enabled = true;
+            }
+        }
+        public void StripButtonEnabled(bool itemEnabled)
+        {
+            if (itemEnabled)
+            {
+                this.toolStripButtonNew.Enabled = true;
+                this.toolStripButtonEdit.Enabled = true;
+                this.toolStripButtonRemove.Enabled = true;
+                this.toolStripButtonUndo.Enabled = false;
+                this.toolStripButtonSave.Enabled = false;
+            }
+            else
+            {
+                this.toolStripButtonNew.Enabled = false;
+                this.toolStripButtonEdit.Enabled = false;
+                this.toolStripButtonRemove.Enabled = false;
+                this.toolStripButtonUndo.Enabled = true;
+                this.toolStripButtonSave.Enabled = true;
+            }
+        }
+        private void DisplayForm(bool mode)
+        {
+            DisplayReadOnly(mode);
+            MenuItemEnabled(mode);
+            MenuItemContextEnabled(mode);
+            StripButtonEnabled(mode);
         }
     }
 }
