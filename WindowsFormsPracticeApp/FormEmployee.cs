@@ -16,10 +16,20 @@ namespace WindowsFormsPracticeApp
         {
             InitializeComponent();
         }
+        DataSetEmployee dsEmployee = new DataSetEmployee();
+        DataSetEmployeeTableAdapters.EmployeeTableAdapter daEmployee = new WindowsFormsPracticeApp.DataSetEmployeeTableAdapters.EmployeeTableAdapter();
+        DataSetEmployeeTableAdapters.JobTitleTableAdapter daJobTitle = new WindowsFormsPracticeApp.DataSetEmployeeTableAdapters.JobTitleTableAdapter();
         private void FormEmployee_Load(object sender, EventArgs e)
         {
             // this.WindowState = FormWindowState.Maximized;
             DisplayForm(true);
+            EmployeeFill();
+        }
+        public void EmployeeFill()
+        {
+            daJobTitle.Fill(dsEmployee.JobTitle);
+            daEmployee.Fill(dsEmployee.Employee);
+            MessageBox.Show("Метод Fill отработал");
         }
         private void Undo()
         {
