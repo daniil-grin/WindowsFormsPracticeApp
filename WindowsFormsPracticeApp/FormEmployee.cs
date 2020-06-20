@@ -12,40 +12,66 @@ namespace WindowsFormsPracticeApp
 {
     public partial class FormEmployee : Form
     {
-        public FormEmployee()
-        {
-            InitializeComponent();
-        }
         DataSetEmployee dsEmployee = new DataSetEmployee();
         DataSetEmployeeTableAdapters.EmployeeTableAdapter daEmployee = new WindowsFormsPracticeApp.DataSetEmployeeTableAdapters.EmployeeTableAdapter();
         DataSetEmployeeTableAdapters.JobTitleTableAdapter daJobTitle = new WindowsFormsPracticeApp.DataSetEmployeeTableAdapters.JobTitleTableAdapter();
+        BindingManagerBase bmEmployee;
+        public FormEmployee()
+        {
+            InitializeComponent();
+            bmEmployee = this.BindingContext[dsEmployee, "Employee"];
+            // Добавляем делегата  PositionChanged для события - изменение позиции в таблице Employee DataSet dsEmployee
+            bmEmployee.PositionChanged += new EventHandler(BindingManagerBase_PositionChanged);
+        }
         private void FormEmployee_Load(object sender, EventArgs e)
         {
             // this.WindowState = FormWindowState.Maximized;
             DisplayForm(true);
             EmployeeFill();
+            this.listBoxEmployee.DataSource = this.dsEmployee;
+            this.listBoxEmployee.DisplayMember = "Employee.EmployeeSurname";
+            textBoxSurname.DataBindings.Add("Text", dsEmployee, "Employee.EmployeeSurname");
+            textBoxName.DataBindings.Add("Text", dsEmployee, "Employee.EmployeeName");
+            textBoxPatronymic.DataBindings.Add("Text", dsEmployee, "Employee.EmployeePatronymic");
+            textBoxNetName.DataBindings.Add("Text", dsEmployee, "Employee.NetName");
+            this.comboBoxAccess.Items.AddRange(new object[] {"не задан", "администратор", "начальник смены", "старший оператор", "оператор", "аналитик"});
+            comboBoxAccess.DataBindings.Add("Text", dsEmployee, "Employee.Access");
+            comboBoxJobRole.DataSource = this.dsEmployee.JobTitle;
+            comboBoxJobRole.DisplayMember = "JobRoleName";
+            comboBoxJobRole.ValueMember = "JobRoleID";
+            comboBoxJobRole.DataBindings.Add("SelectedValue", dsEmployee, "Employee.JobRoleID");
         }
         public void EmployeeFill()
         {
             daJobTitle.Fill(dsEmployee.JobTitle);
             daEmployee.Fill(dsEmployee.Employee);
-            MessageBox.Show("Метод Fill отработал");
+            // MessageBox.Show("Метод Fill отработал");
+        }
+        private void BindingManagerBase_PositionChanged(object sender, EventArgs e)
+        {
+            int pos = ((BindingManagerBase)sender).Position;
+            int sel = (int)dsEmployee.Employee[pos].EmployeeStatus;
+            this.comboBoxStatus.Text = this.comboBoxStatus.Items[sel].ToString();
         }
         private void Undo()
         {
             MessageBox.Show("метод Undo");
+            DisplayForm(true);
         }
         private void New()
         {
             MessageBox.Show("метод New");
+            DisplayForm(false);
         }
         private void Edit()
         {
             MessageBox.Show("метод Edit");
+            DisplayForm(false);
         }
         private void Save()
         {
             MessageBox.Show("метод Save");
+            DisplayForm(true);
         }
         private void Remove()
         {
@@ -65,6 +91,7 @@ namespace WindowsFormsPracticeApp
                     break;
                 }
             }
+            DisplayForm(true);
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
