@@ -61,6 +61,13 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBoxEmployee = new System.Windows.Forms.ListBox();
             this.labelListEmployee = new System.Windows.Forms.Label();
+            this.textBoxAccess = new System.Windows.Forms.TextBox();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
+            this.textBoxJobRole = new System.Windows.Forms.TextBox();
+            this.dateTimePickerFirstDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
+            this.labelFirstDate = new System.Windows.Forms.Label();
+            this.labelBirthday = new System.Windows.Forms.Label();
             this.comboBoxAccess = new System.Windows.Forms.ComboBox();
             this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.comboBoxJobRole = new System.Windows.Forms.ComboBox();
@@ -75,6 +82,8 @@
             this.labelPatronymic = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.labelSurname = new System.Windows.Forms.Label();
+            this.textBoxBirthday = new System.Windows.Forms.TextBox();
+            this.textBoxFirstDate = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -208,7 +217,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(714, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(791, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -331,7 +340,7 @@
             this.toolStripStatusLabelEmployee});
             this.statusStripEmployee.Location = new System.Drawing.Point(0, 449);
             this.statusStripEmployee.Name = "statusStripEmployee";
-            this.statusStripEmployee.Size = new System.Drawing.Size(714, 22);
+            this.statusStripEmployee.Size = new System.Drawing.Size(791, 22);
             this.statusStripEmployee.TabIndex = 0;
             this.statusStripEmployee.Text = "statusStrip1";
             // 
@@ -353,6 +362,15 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxFirstDate);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxBirthday);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxAccess);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxStatus);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxJobRole);
+            this.splitContainer1.Panel2.Controls.Add(this.dateTimePickerFirstDate);
+            this.splitContainer1.Panel2.Controls.Add(this.dateTimePickerBirthday);
+            this.splitContainer1.Panel2.Controls.Add(this.labelFirstDate);
+            this.splitContainer1.Panel2.Controls.Add(this.labelBirthday);
             this.splitContainer1.Panel2.Controls.Add(this.comboBoxAccess);
             this.splitContainer1.Panel2.Controls.Add(this.comboBoxStatus);
             this.splitContainer1.Panel2.Controls.Add(this.comboBoxJobRole);
@@ -367,16 +385,18 @@
             this.splitContainer1.Panel2.Controls.Add(this.labelPatronymic);
             this.splitContainer1.Panel2.Controls.Add(this.labelName);
             this.splitContainer1.Panel2.Controls.Add(this.labelSurname);
-            this.splitContainer1.Size = new System.Drawing.Size(714, 424);
-            this.splitContainer1.SplitterDistance = 237;
+            this.splitContainer1.Size = new System.Drawing.Size(791, 424);
+            this.splitContainer1.SplitterDistance = 329;
             this.splitContainer1.TabIndex = 2;
             // 
             // listBoxEmployee
             // 
+            this.listBoxEmployee.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxEmployee.FormattingEnabled = true;
-            this.listBoxEmployee.Location = new System.Drawing.Point(18, 44);
+            this.listBoxEmployee.ItemHeight = 16;
+            this.listBoxEmployee.Location = new System.Drawing.Point(12, 44);
             this.listBoxEmployee.Name = "listBoxEmployee";
-            this.listBoxEmployee.Size = new System.Drawing.Size(200, 368);
+            this.listBoxEmployee.Size = new System.Drawing.Size(300, 356);
             this.listBoxEmployee.TabIndex = 0;
             // 
             // labelListEmployee
@@ -390,23 +410,91 @@
             this.labelListEmployee.TabIndex = 1;
             this.labelListEmployee.Text = "Список сотрудников";
             // 
+            // textBoxAccess
+            // 
+            this.textBoxAccess.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxAccess.Location = new System.Drawing.Point(183, 230);
+            this.textBoxAccess.Name = "textBoxAccess";
+            this.textBoxAccess.Size = new System.Drawing.Size(256, 26);
+            this.textBoxAccess.TabIndex = 13;
+            this.textBoxAccess.Click += new System.EventHandler(this.textBoxAccess_Click);
+            // 
+            // textBoxStatus
+            // 
+            this.textBoxStatus.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxStatus.Location = new System.Drawing.Point(183, 190);
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.Size = new System.Drawing.Size(256, 26);
+            this.textBoxStatus.TabIndex = 12;
+            this.textBoxStatus.Click += new System.EventHandler(this.textBoxStatus_Click);
+            // 
+            // textBoxJobRole
+            // 
+            this.textBoxJobRole.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxJobRole.Location = new System.Drawing.Point(183, 150);
+            this.textBoxJobRole.Name = "textBoxJobRole";
+            this.textBoxJobRole.Size = new System.Drawing.Size(256, 26);
+            this.textBoxJobRole.TabIndex = 11;
+            this.textBoxJobRole.Click += new System.EventHandler(this.textBoxJobRole_Click);
+            // 
+            // dateTimePickerFirstDate
+            // 
+            this.dateTimePickerFirstDate.CalendarFont = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerFirstDate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerFirstDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerFirstDate.Location = new System.Drawing.Point(183, 355);
+            this.dateTimePickerFirstDate.Name = "dateTimePickerFirstDate";
+            this.dateTimePickerFirstDate.Size = new System.Drawing.Size(256, 27);
+            this.dateTimePickerFirstDate.TabIndex = 10;
+            this.dateTimePickerFirstDate.ValueChanged += new System.EventHandler(this.dateTimePickerFirstDate_ValueChanged);
+            this.dateTimePickerFirstDate.Leave += new System.EventHandler(this.dateTimePickerFirstDate_Leave);
+            // 
+            // dateTimePickerBirthday
+            // 
+            this.dateTimePickerBirthday.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerBirthday.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(183, 310);
+            this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(256, 27);
+            this.dateTimePickerBirthday.TabIndex = 9;
+            this.dateTimePickerBirthday.ValueChanged += new System.EventHandler(this.dateTimePickerBirthday_ValueChanged);
+            this.dateTimePickerBirthday.Leave += new System.EventHandler(this.dateTimePickerBirthday_Leave);
+            // 
+            // labelFirstDate
+            // 
+            this.labelFirstDate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFirstDate.Location = new System.Drawing.Point(20, 350);
+            this.labelFirstDate.Name = "labelFirstDate";
+            this.labelFirstDate.Size = new System.Drawing.Size(148, 40);
+            this.labelFirstDate.TabIndex = 8;
+            this.labelFirstDate.Text = "Дата приема на работу";
+            // 
+            // labelBirthday
+            // 
+            this.labelBirthday.AutoSize = true;
+            this.labelBirthday.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBirthday.Location = new System.Drawing.Point(20, 314);
+            this.labelBirthday.Name = "labelBirthday";
+            this.labelBirthday.Size = new System.Drawing.Size(122, 19);
+            this.labelBirthday.TabIndex = 7;
+            this.labelBirthday.Text = "Дата рождения";
+            // 
             // comboBoxAccess
             // 
+            this.comboBoxAccess.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxAccess.FormattingEnabled = true;
-            this.comboBoxAccess.Items.AddRange(new object[] {
-            "Оператор",
-            "Старший оператор",
-            "Начальник смены",
-            "Администратор",
-            "Аналитик"});
-            this.comboBoxAccess.Location = new System.Drawing.Point(203, 286);
+            this.comboBoxAccess.Location = new System.Drawing.Point(183, 230);
             this.comboBoxAccess.Name = "comboBoxAccess";
-            this.comboBoxAccess.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxAccess.Size = new System.Drawing.Size(256, 26);
             this.comboBoxAccess.TabIndex = 5;
+            this.comboBoxAccess.SelectedIndexChanged += new System.EventHandler(this.comboBoxAccess_SelectedIndexChanged);
             this.comboBoxAccess.SelectionChangeCommitted += new System.EventHandler(this.comboBoxAccess_SelectionChangeCommitted);
+            this.comboBoxAccess.Leave += new System.EventHandler(this.comboBoxAccess_Leave);
             // 
             // comboBoxStatus
             // 
+            this.comboBoxStatus.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxStatus.FormattingEnabled = true;
             this.comboBoxStatus.Items.AddRange(new object[] {
             "Активен",
@@ -415,54 +503,63 @@
             "Болеет",
             "Не работает",
             "Помечен как удаленный"});
-            this.comboBoxStatus.Location = new System.Drawing.Point(203, 240);
+            this.comboBoxStatus.Location = new System.Drawing.Point(183, 190);
             this.comboBoxStatus.Name = "comboBoxStatus";
-            this.comboBoxStatus.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxStatus.Size = new System.Drawing.Size(256, 26);
             this.comboBoxStatus.TabIndex = 4;
+            this.comboBoxStatus.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatus_SelectedIndexChanged);
             this.comboBoxStatus.SelectionChangeCommitted += new System.EventHandler(this.comboBoxStatus_SelectionChangeCommitted);
+            this.comboBoxStatus.Leave += new System.EventHandler(this.comboBoxStatus_Leave);
             // 
             // comboBoxJobRole
             // 
+            this.comboBoxJobRole.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxJobRole.FormattingEnabled = true;
-            this.comboBoxJobRole.Location = new System.Drawing.Point(203, 186);
+            this.comboBoxJobRole.Location = new System.Drawing.Point(183, 150);
             this.comboBoxJobRole.Name = "comboBoxJobRole";
-            this.comboBoxJobRole.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxJobRole.Size = new System.Drawing.Size(256, 26);
             this.comboBoxJobRole.TabIndex = 3;
+            this.comboBoxJobRole.SelectedIndexChanged += new System.EventHandler(this.comboBoxJobRole_SelectedIndexChanged);
             this.comboBoxJobRole.SelectionChangeCommitted += new System.EventHandler(this.comboBoxJobRole_SelectionChangeCommitted);
+            this.comboBoxJobRole.Leave += new System.EventHandler(this.comboBoxJobRole_Leave);
             // 
             // textBoxNetName
             // 
-            this.textBoxNetName.Location = new System.Drawing.Point(203, 338);
+            this.textBoxNetName.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNetName.Location = new System.Drawing.Point(183, 270);
             this.textBoxNetName.Name = "textBoxNetName";
-            this.textBoxNetName.Size = new System.Drawing.Size(256, 20);
+            this.textBoxNetName.Size = new System.Drawing.Size(256, 26);
             this.textBoxNetName.TabIndex = 6;
             // 
             // textBoxPatronymic
             // 
-            this.textBoxPatronymic.Location = new System.Drawing.Point(203, 129);
+            this.textBoxPatronymic.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPatronymic.Location = new System.Drawing.Point(183, 110);
             this.textBoxPatronymic.Name = "textBoxPatronymic";
-            this.textBoxPatronymic.Size = new System.Drawing.Size(256, 20);
+            this.textBoxPatronymic.Size = new System.Drawing.Size(256, 26);
             this.textBoxPatronymic.TabIndex = 2;
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(203, 86);
+            this.textBoxName.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxName.Location = new System.Drawing.Point(183, 70);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(256, 20);
+            this.textBoxName.Size = new System.Drawing.Size(256, 26);
             this.textBoxName.TabIndex = 1;
             // 
             // textBoxSurname
             // 
-            this.textBoxSurname.Location = new System.Drawing.Point(203, 46);
+            this.textBoxSurname.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSurname.Location = new System.Drawing.Point(183, 30);
             this.textBoxSurname.Name = "textBoxSurname";
-            this.textBoxSurname.Size = new System.Drawing.Size(256, 20);
+            this.textBoxSurname.Size = new System.Drawing.Size(256, 26);
             this.textBoxSurname.TabIndex = 0;
             // 
             // labelNetName
             // 
             this.labelNetName.AutoSize = true;
             this.labelNetName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNetName.Location = new System.Drawing.Point(40, 339);
+            this.labelNetName.Location = new System.Drawing.Point(20, 271);
             this.labelNetName.Name = "labelNetName";
             this.labelNetName.Size = new System.Drawing.Size(100, 19);
             this.labelNetName.TabIndex = 6;
@@ -472,7 +569,7 @@
             // 
             this.labelAccess.AutoSize = true;
             this.labelAccess.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAccess.Location = new System.Drawing.Point(40, 284);
+            this.labelAccess.Location = new System.Drawing.Point(20, 231);
             this.labelAccess.Name = "labelAccess";
             this.labelAccess.Size = new System.Drawing.Size(132, 19);
             this.labelAccess.TabIndex = 5;
@@ -482,7 +579,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(40, 238);
+            this.labelStatus.Location = new System.Drawing.Point(20, 191);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(58, 19);
             this.labelStatus.TabIndex = 4;
@@ -492,7 +589,7 @@
             // 
             this.labelJobRole.AutoSize = true;
             this.labelJobRole.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelJobRole.Location = new System.Drawing.Point(40, 184);
+            this.labelJobRole.Location = new System.Drawing.Point(20, 151);
             this.labelJobRole.Name = "labelJobRole";
             this.labelJobRole.Size = new System.Drawing.Size(91, 19);
             this.labelJobRole.TabIndex = 3;
@@ -502,7 +599,7 @@
             // 
             this.labelPatronymic.AutoSize = true;
             this.labelPatronymic.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPatronymic.Location = new System.Drawing.Point(40, 127);
+            this.labelPatronymic.Location = new System.Drawing.Point(20, 111);
             this.labelPatronymic.Name = "labelPatronymic";
             this.labelPatronymic.Size = new System.Drawing.Size(78, 19);
             this.labelPatronymic.TabIndex = 2;
@@ -512,7 +609,7 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(40, 84);
+            this.labelName.Location = new System.Drawing.Point(20, 71);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(38, 19);
             this.labelName.TabIndex = 1;
@@ -522,17 +619,35 @@
             // 
             this.labelSurname.AutoSize = true;
             this.labelSurname.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSurname.Location = new System.Drawing.Point(40, 44);
+            this.labelSurname.Location = new System.Drawing.Point(20, 31);
             this.labelSurname.Name = "labelSurname";
             this.labelSurname.Size = new System.Drawing.Size(74, 19);
             this.labelSurname.TabIndex = 0;
             this.labelSurname.Text = "Фамилия";
             // 
+            // textBoxBirthday
+            // 
+            this.textBoxBirthday.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxBirthday.Location = new System.Drawing.Point(183, 310);
+            this.textBoxBirthday.Name = "textBoxBirthday";
+            this.textBoxBirthday.Size = new System.Drawing.Size(256, 27);
+            this.textBoxBirthday.TabIndex = 14;
+            this.textBoxBirthday.Click += new System.EventHandler(this.textBoxBirthday_Click);
+            // 
+            // textBoxFirstDate
+            // 
+            this.textBoxFirstDate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFirstDate.Location = new System.Drawing.Point(183, 355);
+            this.textBoxFirstDate.Name = "textBoxFirstDate";
+            this.textBoxFirstDate.Size = new System.Drawing.Size(256, 27);
+            this.textBoxFirstDate.TabIndex = 15;
+            this.textBoxFirstDate.Click += new System.EventHandler(this.textBoxFirstDate_Click);
+            // 
             // FormEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 471);
+            this.ClientSize = new System.Drawing.Size(791, 471);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStripEmployee);
@@ -608,5 +723,14 @@
         private System.Windows.Forms.TextBox textBoxPatronymic;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxSurname;
+        private System.Windows.Forms.Label labelFirstDate;
+        private System.Windows.Forms.Label labelBirthday;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFirstDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
+        private System.Windows.Forms.TextBox textBoxJobRole;
+        private System.Windows.Forms.TextBox textBoxStatus;
+        private System.Windows.Forms.TextBox textBoxAccess;
+        private System.Windows.Forms.TextBox textBoxFirstDate;
+        private System.Windows.Forms.TextBox textBoxBirthday;
     }
 }

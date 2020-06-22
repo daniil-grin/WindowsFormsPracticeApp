@@ -36,5 +36,10 @@ namespace WindowsFormsPracticeApp
             AboutBox1 aboutBox = new AboutBox1();
             aboutBox.ShowDialog(this);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            employeeToolStripMenuItem_Click(sender, e);
+        }
     }
 }

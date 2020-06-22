@@ -36,12 +36,15 @@ namespace WindowsFormsPracticeApp
             textBoxName.DataBindings.Add("Text", dsEmployee, "Employee.EmployeeName");
             textBoxPatronymic.DataBindings.Add("Text", dsEmployee, "Employee.EmployeePatronymic");
             textBoxNetName.DataBindings.Add("Text", dsEmployee, "Employee.NetName");
-            this.comboBoxAccess.Items.AddRange(new object[] {"не задан", "администратор", "начальник смены", "старший оператор", "оператор", "аналитик"});
+            this.comboBoxAccess.Items.Clear();
+            this.comboBoxAccess.Items.AddRange(new object[] {"Не задан", "Администратор", "Начальник смены", "Старший оператор", "Оператор", "Аналитик"});
             comboBoxAccess.DataBindings.Add("Text", dsEmployee, "Employee.Access");
             comboBoxJobRole.DataSource = this.dsEmployee.JobTitle;
             comboBoxJobRole.DisplayMember = "JobRoleName";
             comboBoxJobRole.ValueMember = "JobRoleID";
             comboBoxJobRole.DataBindings.Add("SelectedValue", dsEmployee, "Employee.JobRoleID");
+            dateTimePickerBirthday.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsEmployee, "Employee.Birthday"));
+            dateTimePickerFirstDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsEmployee, "Employee.FirstDate"));
 
             /* Проверка ----
             DataRow employeeRow = dsEmployee.Employee.NewRow();
@@ -92,23 +95,23 @@ namespace WindowsFormsPracticeApp
         }
         private void Undo()
         {
-            DialogResult result = MessageBox.Show("Отменить изменени?", "Отмена изменений", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            DialogResult result = MessageBox.Show("Отменить изменения?", "Отмена изменений", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             switch (result)
             {
                 case DialogResult.Yes:
-                    {
-                        bmEmployee.EndCurrentEdit();
-                        dsEmployee.Employee.RejectChanges();
-                        break;
-                    }
+                {
+                    bmEmployee.EndCurrentEdit();
+                    dsEmployee.Employee.RejectChanges();
+                    DisplayForm(true);
+                    break;
+                }
                 case DialogResult.No:
-                    {
-                        //отмена удаления данных по сотруднику  
-                        break;
-                    }
+                {
+                    //отмена удаления данных по сотруднику
+                    DisplayForm(false);
+                    break;
+                }
             }
-
-            DisplayForm(true);
         }
         private void New()
         {
@@ -120,7 +123,7 @@ namespace WindowsFormsPracticeApp
             rowEmployee["EmployeeSurname"] = "";
             rowEmployee["EmployeeName"] = "";
             rowEmployee["EmployeePatronymic"] = "";
-            rowEmployee["Access"] = "не задано";
+            rowEmployee["Access"] = "Не задан";
             rowEmployee["NetName"] = "";
             rowEmployee["Birthday"] = DateTime.Today;
             rowEmployee["FirstDate"] = DateTime.Today;
@@ -353,23 +356,39 @@ namespace WindowsFormsPracticeApp
         {
             if (readOnly)
             {
+                listBoxEmployee.Enabled = true;
                 this.textBoxSurname.ReadOnly = true;
                 this.textBoxName.ReadOnly = true;
                 this.textBoxPatronymic.ReadOnly = true;
                 this.textBoxNetName.ReadOnly = true;
+                this.textBoxJobRole.ReadOnly = true;
+                this.textBoxStatus.ReadOnly = true;
+                this.textBoxAccess.ReadOnly = true;
+                this.textBoxBirthday.ReadOnly = true;
+                this.textBoxFirstDate.ReadOnly = true;
                 this.comboBoxJobRole.Enabled = false;
                 this.comboBoxStatus.Enabled = false;
                 this.comboBoxAccess.Enabled = false;
+                this.dateTimePickerBirthday.Enabled = false;
+                this.dateTimePickerFirstDate.Enabled = false;
             }
             else
             {
+                listBoxEmployee.Enabled = false;
                 this.textBoxSurname.ReadOnly = false;
                 this.textBoxName.ReadOnly = false;
                 this.textBoxPatronymic.ReadOnly = false;
                 this.textBoxNetName.ReadOnly = false;
+                this.textBoxJobRole.ReadOnly = false;
+                this.textBoxStatus.ReadOnly = false;
+                this.textBoxAccess.ReadOnly = false;
+                this.textBoxBirthday.ReadOnly = false;
+                this.textBoxFirstDate.ReadOnly = false;
                 this.comboBoxJobRole.Enabled = true;
                 this.comboBoxStatus.Enabled = true;
                 this.comboBoxAccess.Enabled = true;
+                this.dateTimePickerBirthday.Enabled = true;
+                this.dateTimePickerFirstDate.Enabled = true;
             }
         }
         public void MenuItemEnabled(bool itemEnabled)
@@ -460,6 +479,113 @@ namespace WindowsFormsPracticeApp
             int pos = -1;
             pos = this.BindingContext[dsEmployee, "Employee"].Position;
             dsEmployee.Employee[pos].EmployeeStatus = comboBoxStatus.SelectedIndex;
+        }
+
+        private void comboBoxJobRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxJobRole.Text = comboBoxJobRole.Text;
+        }
+
+        private void textBoxJobRole_Click(object sender, EventArgs e)
+        {
+            if (!textBoxJobRole.ReadOnly)
+            {
+                textBoxJobRole.Visible = false;
+                comboBoxJobRole.Visible = true;
+                comboBoxJobRole.Focus();
+            }
+        }
+
+        private void comboBoxJobRole_Leave(object sender, EventArgs e)
+        {
+            textBoxJobRole.Visible = true;
+            comboBoxJobRole.Visible = false;
+        }
+
+        private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxStatus.Text = comboBoxStatus.Text;
+        }
+
+        private void textBoxStatus_Click(object sender, EventArgs e)
+        {
+            if (!textBoxStatus.ReadOnly)
+            {
+                textBoxStatus.Visible = false;
+                comboBoxStatus.Visible = true;
+                comboBoxStatus.Focus();
+            }
+        }
+
+        private void comboBoxStatus_Leave(object sender, EventArgs e)
+        {
+            textBoxStatus.Visible = true;
+            comboBoxStatus.Visible = false;
+        }
+
+        private void comboBoxAccess_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxAccess.Text = comboBoxAccess.Text;
+        }
+
+        private void textBoxAccess_Click(object sender, EventArgs e)
+        {
+            if (!textBoxAccess.ReadOnly)
+            {
+                textBoxAccess.Visible = false;
+                comboBoxAccess.Visible = true;
+                comboBoxAccess.Focus();
+            }
+        }
+
+        private void comboBoxAccess_Leave(object sender, EventArgs e)
+        {
+            textBoxAccess.Visible = true;
+            comboBoxAccess.Visible = false;
+        }
+
+        private void dateTimePickerBirthday_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dt = dateTimePickerBirthday.Value;
+            textBoxBirthday.Text = " " + dt.Day + "." + dt.Month + "." + dt.Year;
+        }
+
+        private void textBoxBirthday_Click(object sender, EventArgs e)
+        {
+            if (!textBoxAccess.ReadOnly)
+            {
+                textBoxBirthday.Visible = false;
+                dateTimePickerBirthday.Visible = true;
+                dateTimePickerBirthday.Focus();
+            }
+        }
+
+        private void dateTimePickerBirthday_Leave(object sender, EventArgs e)
+        {
+            textBoxBirthday.Visible = true;
+            dateTimePickerBirthday.Visible = false;
+        }
+
+        private void dateTimePickerFirstDate_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dt = dateTimePickerFirstDate.Value;
+            textBoxFirstDate.Text = " " + dt.Day + "." + dt.Month + "." + dt.Year;
+        }
+
+        private void textBoxFirstDate_Click(object sender, EventArgs e)
+        {
+            if (!textBoxAccess.ReadOnly)
+            {
+                textBoxFirstDate.Visible = false;
+                dateTimePickerFirstDate.Visible = true;
+                dateTimePickerFirstDate.Focus();
+            }
+        }
+
+        private void dateTimePickerFirstDate_Leave(object sender, EventArgs e)
+        {
+            textBoxFirstDate.Visible = true;
+            dateTimePickerFirstDate.Visible = false;
         }
     }
 }
