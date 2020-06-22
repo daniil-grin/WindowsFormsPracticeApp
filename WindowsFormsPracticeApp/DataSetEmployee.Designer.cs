@@ -589,10 +589,7 @@ namespace WindowsFormsPracticeApp {
                 this.columnEmployeeStatus.AllowDBNull = false;
                 this.columnAccess.AllowDBNull = false;
                 this.columnAccess.MaxLength = 50;
-                this.columnNetName.AllowDBNull = false;
                 this.columnNetName.MaxLength = 50;
-                this.columnBirthday.AllowDBNull = false;
-                this.columnFirstDate.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1092,7 +1089,12 @@ namespace WindowsFormsPracticeApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string NetName {
                 get {
-                    return ((string)(this[this.tableEmployee.NetNameColumn]));
+                    try {
+                        return ((string)(this[this.tableEmployee.NetNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'NetName\' в таблице \'Employee\' равно DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableEmployee.NetNameColumn] = value;
@@ -1103,7 +1105,12 @@ namespace WindowsFormsPracticeApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public System.DateTime Birthday {
                 get {
-                    return ((global::System.DateTime)(this[this.tableEmployee.BirthdayColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableEmployee.BirthdayColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Birthday\' в таблице \'Employee\' равно DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableEmployee.BirthdayColumn] = value;
@@ -1114,7 +1121,12 @@ namespace WindowsFormsPracticeApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public System.DateTime FirstDate {
                 get {
-                    return ((global::System.DateTime)(this[this.tableEmployee.FirstDateColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableEmployee.FirstDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'FirstDate\' в таблице \'Employee\' равно DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableEmployee.FirstDateColumn] = value;
@@ -1130,6 +1142,42 @@ namespace WindowsFormsPracticeApp {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Employee_JobTitle"]);
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNetNameNull() {
+                return this.IsNull(this.tableEmployee.NetNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNetNameNull() {
+                this[this.tableEmployee.NetNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsBirthdayNull() {
+                return this.IsNull(this.tableEmployee.BirthdayColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetBirthdayNull() {
+                this[this.tableEmployee.BirthdayColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFirstDateNull() {
+                return this.IsNull(this.tableEmployee.FirstDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFirstDateNull() {
+                this[this.tableEmployee.FirstDateColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1387,7 +1435,7 @@ namespace WindowsFormsPracticeApp.DataSetEmployeeTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Employee] WHERE (([EmployeeID] = @Original_EmployeeID) AND ([JobRoleID] = @Original_JobRoleID) AND ([EmployeeSurname] = @Original_EmployeeSurname) AND ([EmployeeName] = @Original_EmployeeName) AND ([EmployeePatronymic] = @Original_EmployeePatronymic) AND ([EmployeeStatus] = @Original_EmployeeStatus) AND ([Access] = @Original_Access) AND ([NetName] = @Original_NetName) AND ([Birthday] = @Original_Birthday) AND ([FirstDate] = @Original_FirstDate))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Employee] WHERE (([EmployeeID] = @Original_EmployeeID) AND ([JobRoleID] = @Original_JobRoleID) AND ([EmployeeSurname] = @Original_EmployeeSurname) AND ([EmployeeName] = @Original_EmployeeName) AND ([EmployeePatronymic] = @Original_EmployeePatronymic) AND ([EmployeeStatus] = @Original_EmployeeStatus) AND ([Access] = @Original_Access) AND ((@IsNull_NetName = 1 AND [NetName] IS NULL) OR ([NetName] = @Original_NetName)) AND ((@IsNull_Birthday = 1 AND [Birthday] IS NULL) OR ([Birthday] = @Original_Birthday)) AND ((@IsNull_FirstDate = 1 AND [FirstDate] IS NULL) OR ([FirstDate] = @Original_FirstDate)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_JobRoleID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobRoleID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -1396,13 +1444,16 @@ namespace WindowsFormsPracticeApp.DataSetEmployeeTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeePatronymic", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeePatronymic", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeStatus", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeStatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Access", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Access", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NetName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NetName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NetName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NetName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Birthday", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Birthday", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FirstDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FirstDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Employee] ([JobRoleID], [EmployeeSurname], [EmployeeName], [EmployeePatronymic], [EmployeeStatus], [Access], [NetName], [Birthday], [FirstDate]) VALUES (@JobRoleID, @EmployeeSurname, @EmployeeName, @EmployeePatronymic, @EmployeeStatus, @Access, @NetName, @Birthday, @FirstDate);
-SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic, EmployeeStatus, Access, NetName, Birthday, FirstDate FROM Employee WHERE (EmployeeID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Employee] ([JobRoleID], [EmployeeSurname], [EmployeeName], [EmployeePatronymic], [EmployeeStatus], [Access], [NetName], [Birthday], [FirstDate]) VALUES (@JobRoleID, @EmployeeSurname, @EmployeeName, @EmployeePatronymic, @EmployeeStatus, @Access, @NetName, @Birthday, @FirstDate);
+SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic, EmployeeStatus, Access, NetName, Birthday, FirstDate FROM Employee WHERE (EmployeeID = SCOPE_IDENTITY()) ORDER BY EmployeeSurname, EmployeeName";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@JobRoleID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobRoleID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeSurname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeSurname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1415,8 +1466,8 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Employee] SET [JobRoleID] = @JobRoleID, [EmployeeSurname] = @EmployeeSurname, [EmployeeName] = @EmployeeName, [EmployeePatronymic] = @EmployeePatronymic, [EmployeeStatus] = @EmployeeStatus, [Access] = @Access, [NetName] = @NetName, [Birthday] = @Birthday, [FirstDate] = @FirstDate WHERE (([EmployeeID] = @Original_EmployeeID) AND ([JobRoleID] = @Original_JobRoleID) AND ([EmployeeSurname] = @Original_EmployeeSurname) AND ([EmployeeName] = @Original_EmployeeName) AND ([EmployeePatronymic] = @Original_EmployeePatronymic) AND ([EmployeeStatus] = @Original_EmployeeStatus) AND ([Access] = @Original_Access) AND ([NetName] = @Original_NetName) AND ([Birthday] = @Original_Birthday) AND ([FirstDate] = @Original_FirstDate));
-SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic, EmployeeStatus, Access, NetName, Birthday, FirstDate FROM Employee WHERE (EmployeeID = @EmployeeID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Employee] SET [JobRoleID] = @JobRoleID, [EmployeeSurname] = @EmployeeSurname, [EmployeeName] = @EmployeeName, [EmployeePatronymic] = @EmployeePatronymic, [EmployeeStatus] = @EmployeeStatus, [Access] = @Access, [NetName] = @NetName, [Birthday] = @Birthday, [FirstDate] = @FirstDate WHERE (([EmployeeID] = @Original_EmployeeID) AND ([JobRoleID] = @Original_JobRoleID) AND ([EmployeeSurname] = @Original_EmployeeSurname) AND ([EmployeeName] = @Original_EmployeeName) AND ([EmployeePatronymic] = @Original_EmployeePatronymic) AND ([EmployeeStatus] = @Original_EmployeeStatus) AND ([Access] = @Original_Access) AND ((@IsNull_NetName = 1 AND [NetName] IS NULL) OR ([NetName] = @Original_NetName)) AND ((@IsNull_Birthday = 1 AND [Birthday] IS NULL) OR ([Birthday] = @Original_Birthday)) AND ((@IsNull_FirstDate = 1 AND [FirstDate] IS NULL) OR ([FirstDate] = @Original_FirstDate)));
+SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic, EmployeeStatus, Access, NetName, Birthday, FirstDate FROM Employee WHERE (EmployeeID = @EmployeeID) ORDER BY EmployeeSurname, EmployeeName";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@JobRoleID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "JobRoleID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeSurname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeSurname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1434,8 +1485,11 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeePatronymic", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeePatronymic", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeStatus", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeStatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Access", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Access", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NetName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NetName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NetName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NetName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Birthday", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Birthday", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FirstDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FirstDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -1453,8 +1507,9 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic, " +
-                "EmployeeStatus, Access, NetName, Birthday, FirstDate FROM dbo.Employee";
+            this._commandCollection[0].CommandText = "SELECT        EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatro" +
+                "nymic, EmployeeStatus, Access, NetName, Birthday, FirstDate\r\nFROM            Emp" +
+                "loyee\r\nORDER BY EmployeeSurname, EmployeeName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1515,7 +1570,7 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(short Original_EmployeeID, short Original_JobRoleID, string Original_EmployeeSurname, string Original_EmployeeName, string Original_EmployeePatronymic, int Original_EmployeeStatus, string Original_Access, string Original_NetName, System.DateTime Original_Birthday, System.DateTime Original_FirstDate) {
+        public virtual int Delete(short Original_EmployeeID, short Original_JobRoleID, string Original_EmployeeSurname, string Original_EmployeeName, string Original_EmployeePatronymic, int Original_EmployeeStatus, string Original_Access, string Original_NetName, global::System.Nullable<global::System.DateTime> Original_Birthday, global::System.Nullable<global::System.DateTime> Original_FirstDate) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((short)(Original_EmployeeID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((short)(Original_JobRoleID));
             if ((Original_EmployeeSurname == null)) {
@@ -1544,13 +1599,29 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Access));
             }
             if ((Original_NetName == null)) {
-                throw new global::System.ArgumentNullException("Original_NetName");
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_NetName));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_NetName));
             }
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_Birthday));
-            this.Adapter.DeleteCommand.Parameters[9].Value = ((System.DateTime)(Original_FirstDate));
+            if ((Original_Birthday.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((System.DateTime)(Original_Birthday.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((Original_FirstDate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((System.DateTime)(Original_FirstDate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1571,7 +1642,7 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(short JobRoleID, string EmployeeSurname, string EmployeeName, string EmployeePatronymic, int EmployeeStatus, string Access, string NetName, System.DateTime Birthday, System.DateTime FirstDate) {
+        public virtual int Insert(short JobRoleID, string EmployeeSurname, string EmployeeName, string EmployeePatronymic, int EmployeeStatus, string Access, string NetName, global::System.Nullable<global::System.DateTime> Birthday, global::System.Nullable<global::System.DateTime> FirstDate) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((short)(JobRoleID));
             if ((EmployeeSurname == null)) {
                 throw new global::System.ArgumentNullException("EmployeeSurname");
@@ -1599,13 +1670,23 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Access));
             }
             if ((NetName == null)) {
-                throw new global::System.ArgumentNullException("NetName");
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = ((string)(NetName));
             }
-            this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(Birthday));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(FirstDate));
+            if ((Birthday.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(Birthday.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((FirstDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(FirstDate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1634,8 +1715,8 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
                     int EmployeeStatus, 
                     string Access, 
                     string NetName, 
-                    System.DateTime Birthday, 
-                    System.DateTime FirstDate, 
+                    global::System.Nullable<global::System.DateTime> Birthday, 
+                    global::System.Nullable<global::System.DateTime> FirstDate, 
                     short Original_EmployeeID, 
                     short Original_JobRoleID, 
                     string Original_EmployeeSurname, 
@@ -1644,8 +1725,8 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
                     int Original_EmployeeStatus, 
                     string Original_Access, 
                     string Original_NetName, 
-                    System.DateTime Original_Birthday, 
-                    System.DateTime Original_FirstDate, 
+                    global::System.Nullable<global::System.DateTime> Original_Birthday, 
+                    global::System.Nullable<global::System.DateTime> Original_FirstDate, 
                     short EmployeeID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((short)(JobRoleID));
             if ((EmployeeSurname == null)) {
@@ -1674,13 +1755,23 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Access));
             }
             if ((NetName == null)) {
-                throw new global::System.ArgumentNullException("NetName");
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(NetName));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Birthday));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(FirstDate));
+            if ((Birthday.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Birthday.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((FirstDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(FirstDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             this.Adapter.UpdateCommand.Parameters[9].Value = ((short)(Original_EmployeeID));
             this.Adapter.UpdateCommand.Parameters[10].Value = ((short)(Original_JobRoleID));
             if ((Original_EmployeeSurname == null)) {
@@ -1709,14 +1800,30 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Access));
             }
             if ((Original_NetName == null)) {
-                throw new global::System.ArgumentNullException("Original_NetName");
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_NetName));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_NetName));
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((System.DateTime)(Original_Birthday));
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_FirstDate));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((short)(EmployeeID));
+            if ((Original_Birthday.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((System.DateTime)(Original_Birthday.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            if ((Original_FirstDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((System.DateTime)(Original_FirstDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((short)(EmployeeID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1745,8 +1852,8 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
                     int EmployeeStatus, 
                     string Access, 
                     string NetName, 
-                    System.DateTime Birthday, 
-                    System.DateTime FirstDate, 
+                    global::System.Nullable<global::System.DateTime> Birthday, 
+                    global::System.Nullable<global::System.DateTime> FirstDate, 
                     short Original_EmployeeID, 
                     short Original_JobRoleID, 
                     string Original_EmployeeSurname, 
@@ -1755,8 +1862,8 @@ SELECT EmployeeID, JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic,
                     int Original_EmployeeStatus, 
                     string Original_Access, 
                     string Original_NetName, 
-                    System.DateTime Original_Birthday, 
-                    System.DateTime Original_FirstDate) {
+                    global::System.Nullable<global::System.DateTime> Original_Birthday, 
+                    global::System.Nullable<global::System.DateTime> Original_FirstDate) {
             return this.Update(JobRoleID, EmployeeSurname, EmployeeName, EmployeePatronymic, EmployeeStatus, Access, NetName, Birthday, FirstDate, Original_EmployeeID, Original_JobRoleID, Original_EmployeeSurname, Original_EmployeeName, Original_EmployeePatronymic, Original_EmployeeStatus, Original_Access, Original_NetName, Original_Birthday, Original_FirstDate, Original_EmployeeID);
         }
     }

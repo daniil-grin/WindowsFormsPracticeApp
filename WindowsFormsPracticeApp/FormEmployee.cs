@@ -28,8 +28,10 @@ namespace WindowsFormsPracticeApp
             // this.WindowState = FormWindowState.Maximized;
             DisplayForm(true);
             EmployeeFill();
-            this.listBoxEmployee.DataSource = this.dsEmployee;
-            this.listBoxEmployee.DisplayMember = "Employee.EmployeeSurname";
+            AddColumsFullName();
+            AddListBoxEmployeeDataSource();
+            // this.listBoxEmployee.DataSource = this.dsEmployee;
+            // this.listBoxEmployee.DisplayMember = "Employee.EmployeeSurname";
             textBoxSurname.DataBindings.Add("Text", dsEmployee, "Employee.EmployeeSurname");
             textBoxName.DataBindings.Add("Text", dsEmployee, "Employee.EmployeeName");
             textBoxPatronymic.DataBindings.Add("Text", dsEmployee, "Employee.EmployeePatronymic");
@@ -71,6 +73,16 @@ namespace WindowsFormsPracticeApp
             daJobTitle.Fill(dsEmployee.JobTitle);
             daEmployee.Fill(dsEmployee.Employee);
             // MessageBox.Show("Метод Fill отработал");
+        }
+        private void AddColumsFullName()
+        {
+            dsEmployee.Employee.Columns.Add("FullName", typeof(string),
+             "EmployeeSurname+' '+EmployeeName+' '+EmployeePatronymic");
+        }
+        private void AddListBoxEmployeeDataSource()
+        {
+            listBoxEmployee.DataSource = this.dsEmployee;
+            listBoxEmployee.DisplayMember = "Employee.FullName";
         }
         private void BindingManagerBase_PositionChanged(object sender, EventArgs e)
         {
