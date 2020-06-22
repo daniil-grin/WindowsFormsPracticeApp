@@ -40,6 +40,31 @@ namespace WindowsFormsPracticeApp
             comboBoxJobRole.DisplayMember = "JobRoleName";
             comboBoxJobRole.ValueMember = "JobRoleID";
             comboBoxJobRole.DataBindings.Add("SelectedValue", dsEmployee, "Employee.JobRoleID");
+
+            /* Проверка ----
+            DataRow employeeRow = dsEmployee.Employee.NewRow();
+            employeeRow[1] = 1;
+            employeeRow[2] = "Ларина";
+            employeeRow[3] = "Татьяна";
+            employeeRow[4] = "Ивановна";
+            employeeRow[5] = 1;
+            employeeRow[6] = 2;
+            employeeRow[7] = 1;
+            employeeRow[8] = new DateTime(2020, 6, 22);
+            employeeRow[9] = new DateTime(2020, 6, 22);
+            dsEmployee.Employee.Rows.Add(employeeRow);
+            // dsEmployee.Employee.Rows[0].Delete();
+            try
+            {
+                daEmployee.Update(dsEmployee.Employee);
+            }
+            catch (Exception ex)
+            {
+              // Код обработки ошибочной ситуации. 
+              String err = ex.ToString();
+              MessageBox.Show("Ошибка обновления таблицы базы данных  Employee"  + err);
+            }
+            // */
         }
         public void EmployeeFill()
         {
@@ -55,39 +80,137 @@ namespace WindowsFormsPracticeApp
         }
         private void Undo()
         {
-            MessageBox.Show("метод Undo");
+            DialogResult result = MessageBox.Show("Отменить изменени?", "Отмена изменений", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    {
+                        bmEmployee.EndCurrentEdit();
+                        dsEmployee.Employee.RejectChanges();
+                        break;
+                    }
+                case DialogResult.No:
+                    {
+                        //отмена удаления данных по сотруднику  
+                        break;
+                    }
+            }
+
             DisplayForm(true);
         }
         private void New()
         {
-            MessageBox.Show("метод New");
+            // Создать новую строку
+            DataRow rowEmployee = this.dsEmployee.Employee.NewEmployeeRow();
+            // Сформировать начальные значения для элементов строки
+            rowEmployee["JobRoleID"] = 3;
+            rowEmployee["EmployeeStatus"] = 0;
+            rowEmployee["EmployeeSurname"] = "";
+            rowEmployee["EmployeeName"] = "";
+            rowEmployee["EmployeePatronymic"] = "";
+            rowEmployee["Access"] = "не задано";
+            rowEmployee["NetName"] = "";
+            rowEmployee["Birthday"] = DateTime.Today;
+            rowEmployee["FirstDate"] = DateTime.Today;
+
+            // Добавить сформированную строку к таблице Employee
+            dsEmployee.Employee.Rows.Add(rowEmployee);
+            // Установить активную позицию в таблице Employee на добавленную строку
+            int pos = this.dsEmployee.Employee.Rows.Count - 1;
+            this.BindingContext[dsEmployee, "Employee"].Position = pos;
+            // Задать режим редактирования формы
             DisplayForm(false);
+            // Сделать список сотрудников недоступным для выбора
+            listBoxEmployee.Enabled = false;
+            // Установить фокус на элементе textBoxSurname
+            textBoxSurname.Focus();
         }
         private void Edit()
         {
-            MessageBox.Show("метод Edit");
+            this.listBoxEmployee.Enabled = false;
             DisplayForm(false);
         }
         private void Save()
         {
-            MessageBox.Show("метод Save");
+            // Завершение текущих обновлений всех  связанных с помощью 
+            // объектов Binding элементов управления 
+            bmEmployee.EndCurrentEdit();
+
+            /// Формирование таблицы, в которую включаются только 
+            // модифицированные строки
+            DataSetEmployee.EmployeeDataTable ds1 = 
+                (DataSetEmployee.EmployeeDataTable)dsEmployee.Employee.GetChanges(DataRowState.Modified);
+
+            if (ds1 != null)
+                try
+                {
+                    this.daEmployee.Update(ds1);
+                    ds1.Dispose();
+                    dsEmployee.Employee.AcceptChanges();
+                }
+                catch (Exception x)
+                {
+                    string mes = x.Message;
+                    MessageBox.Show("Ошибка обновления базы данных Employee " + mes, "Предупреждение");
+                    this.dsEmployee.Employee.RejectChanges();
+                }
             DisplayForm(true);
+            /// Формирование таблицы, в которую включаются только добавленные строки
+            DataSetEmployee.EmployeeDataTable ds2 = (DataSetEmployee.EmployeeDataTable)dsEmployee.Employee.
+            GetChanges(DataRowState.Added);
+            if (ds2 != null)
+            {
+                try
+                {
+                    daEmployee.Update(ds2);
+                    ds2.Dispose();
+                    dsEmployee.Employee.AcceptChanges();
+                }
+                catch (Exception x)
+                {
+                    string mes = x.Message;
+                    MessageBox.Show("Ошибка вставки записи в базу данных Employee " + mes, "Предупреждение");
+                    this.dsEmployee.Employee.RejectChanges();
+                }
+            }
+            listBoxEmployee.Enabled = true;
+            textBoxSurname.Focus();
         }
+
         private void Remove()
         {
-            DialogResult result = MessageBox.Show(" Удалить данные  \n по сотруднику? ", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            // Определяется позиция, которую необходимо удалить в таблице Employee
+            int pos = -1;
+            pos = this.BindingContext[dsEmployee, "Employee"].Position;
+            // Затем формируется строка с фамилией, именем и отчеством, удаляемого сотрудника
+            string mes = textBoxSurname.Text.ToString().Trim() + " " + textBoxName.Text.ToString().Trim() + " " + textBoxPatronymic.Text.ToString().Trim();
+            DialogResult result = MessageBox.Show(" Удалить данные  \n по сотруднику \n" + mes + "?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             switch (result)
             {
                 case DialogResult.Yes:
                 {
-                    //выполнить действия по удалению данных по сотруднику 
-                    MessageBox.Show("Удаление данных");
+                        //выполнить действия по удалению данных по сотруднику 
+                    this.dsEmployee.Employee.Rows[pos].Delete();
+                    if (this.dsEmployee.Employee.GetChanges(DataRowState.Deleted) != null)
+                    {
+                        try
+                        {
+                            this.daEmployee.Update(dsEmployee.Employee);
+                            this.dsEmployee.Employee.AcceptChanges();
+                        }
+                        catch (Exception x)
+                        {
+                            string er = x.Message.ToString();
+                            MessageBox.Show("Ошибка удаления записи в базе данных Employee " + er, "Предупреждение");
+                            this.dsEmployee.Employee.RejectChanges();
+                        }
+                    }
                     break;
                 }
                 case DialogResult.No:
                 {
                     //отмена удаления данных по сотруднику   
-                    MessageBox.Show("Отмена удаления данных");
+                    this.dsEmployee.Employee.RejectChanges();
                     break;
                 }
             }
@@ -300,6 +423,31 @@ namespace WindowsFormsPracticeApp
             MenuItemEnabled(mode);
             MenuItemContextEnabled(mode);
             StripButtonEnabled(mode);
+        }
+
+        private void comboBoxJobRole_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Определяем позицию в таблице Employee
+            int pos = -1;
+            pos = this.BindingContext[dsEmployee,"Employee"].Position;
+            // Изменение в таблице Employee поля JobRoleID при изменении 
+            // выбора должности (comboBoxJobRole) 
+            dsEmployee.Employee[pos].JobRoleID = 
+                (short)((DataRowView)comboBoxJobRole.Items[comboBoxJobRole.SelectedIndex])["JobRoleID"];
+        }
+
+        private void comboBoxAccess_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int pos = -1;
+            pos = this.BindingContext[dsEmployee, "Employee"].Position;
+            dsEmployee.Employee[pos].Access = comboBoxAccess.SelectedItem.ToString();
+        }
+
+        private void comboBoxStatus_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int pos = -1;
+            pos = this.BindingContext[dsEmployee, "Employee"].Position;
+            dsEmployee.Employee[pos].EmployeeStatus = comboBoxStatus.SelectedIndex;
         }
     }
 }

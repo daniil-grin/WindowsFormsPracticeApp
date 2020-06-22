@@ -403,6 +403,7 @@
             this.comboBoxAccess.Name = "comboBoxAccess";
             this.comboBoxAccess.Size = new System.Drawing.Size(256, 21);
             this.comboBoxAccess.TabIndex = 5;
+            this.comboBoxAccess.SelectionChangeCommitted += new System.EventHandler(this.comboBoxAccess_SelectionChangeCommitted);
             // 
             // comboBoxStatus
             // 
@@ -418,6 +419,7 @@
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(256, 21);
             this.comboBoxStatus.TabIndex = 4;
+            this.comboBoxStatus.SelectionChangeCommitted += new System.EventHandler(this.comboBoxStatus_SelectionChangeCommitted);
             // 
             // comboBoxJobRole
             // 
@@ -426,6 +428,7 @@
             this.comboBoxJobRole.Name = "comboBoxJobRole";
             this.comboBoxJobRole.Size = new System.Drawing.Size(256, 21);
             this.comboBoxJobRole.TabIndex = 3;
+            this.comboBoxJobRole.SelectionChangeCommitted += new System.EventHandler(this.comboBoxJobRole_SelectionChangeCommitted);
             // 
             // textBoxNetName
             // 
